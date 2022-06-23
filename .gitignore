@@ -361,3 +361,8 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/ComfortApp/images
+/ComfortApp/Data
+/Libs/ezweb.dll
+/Libs/EZWEBDLL_UM_cn.pdf
+/ComfortApp/DATA1.mdb

@@ -1,0 +1,61 @@
+﻿using ComfortApp.Common;
+using ComfortApp.Models;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+
+using System.Windows.Forms;
+
+namespace ComfortApp
+{
+    public partial class TMSZ : Form
+    {
+        private int _dbIndex;
+        private TMSZ_Info _tmsz_Info;
+        public TMSZ(int dbIndex)
+        {
+            InitializeComponent();
+            _dbIndex = dbIndex;
+        }
+
+        private void btnModify_Click(object sender, EventArgs e)
+        {
+            string sql = string.Empty;
+            sql = $"insert into tmsz(dk,wd,sd,le) values(" +
+                   $"{txtdk.Text.Trim()}," +
+                   $"{txtwd.Text.Trim()}," +
+                   $"{txtsd.Text.Trim()}," +
+                   $"{txtle.Text.Trim()})";
+            if (_tmsz_Info != null)
+            {
+                AccessDbHelper.ExecuteNonQuery(_dbIndex, "delete from tmsz");
+            } 
+            AccessDbHelper.ExecuteNonQuery(_dbIndex, sql);
+            this.DialogResult = DialogResult.OK;
+            this.Close();
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.Cancel;
+            this.Close();
+        }
+
+        private void TMSZ_Load(object sender, EventArgs e)
+        {
+            _tmsz_Info = LibHelper.ReadXTSZ(_dbIndex);
+            if(_tmsz_Info != null)
+            {
+                txtdk.Text = $"{_tmsz_Info.dk}";
+                txtwd.Text = $"{_tmsz_Info.wd}";
+                txtsd.Text = $"{_tmsz_Info.sd}";
+                txtle.Text = $"{_tmsz_Info.le}";
+            }
+          
+        }
+    }
+}
