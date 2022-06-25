@@ -66,6 +66,9 @@
     <LangVersion>7.3</LangVersion>
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>ABath.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
@@ -182,7 +185,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="abath.ico" />
+    <Content Include="ABath.ico" />
     <Content Include="Data\DATA1.mdb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
