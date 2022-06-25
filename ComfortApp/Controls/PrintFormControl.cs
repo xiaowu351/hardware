@@ -154,7 +154,7 @@ namespace ComfortApp.Controls
                 MessageBox.Show("未找到系統設置信息，請先設置系統信息再試!");
                 return;
             }
-            //saveTosa();
+            saveTosa();
             print();
             this.btnPrint.Enabled = false;
         }
