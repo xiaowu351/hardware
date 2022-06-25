@@ -62,6 +62,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ABathForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABathForm.Designer.cs">
+      <DependentUpon>ABathForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="AppMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -93,6 +99,9 @@
     <Compile Include="TMSZ.Designer.cs">
       <DependentUpon>TMSZ.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="ABathForm.resx">
+      <DependentUpon>ABathForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AppMain.resx">
       <DependentUpon>AppMain.cs</DependentUpon>
     </EmbeddedResource>
@@ -155,6 +164,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="abath.ico" />
     <Content Include="Data\DATA1.mdb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

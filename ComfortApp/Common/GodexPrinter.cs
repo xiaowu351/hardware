@@ -391,7 +391,32 @@ namespace EzioDll
         {
             EZioApi.sendcommand("~S,SENSOR,0");
         }
-
+        /// <summary>
+        /// 画直线
+        /// </summary>
+        /// <param name="LeftPosX"></param>
+        /// <param name="LeftPosY"></param>
+        /// <param name="RightPosX"></param>
+        /// <param name="RightPosY"></param>
+        public void DrawStraightLinecommand(int LeftPosX, int LeftPosY, int RightPosX, int RightPosY)
+        {
+            EZioApi.sendcommand($"le,{LeftPosX},{LeftPosY},{RightPosX},{RightPosY}");
+        }
+        /// <summary>
+        /// 条码命令
+        /// </summary>
+        /// <param name="LeftPosX"></param>
+        /// <param name="LeftPosY"></param>
+        /// <param name="Narrow"></param>
+        /// <param name="Width"></param>
+        /// <param name="Height"></param>
+        /// <param name="Rotation"></param>
+        /// <param name="Readable"></param>
+        /// <param name="Data"></param>
+        public void Barcodecommand(int LeftPosX, int LeftPosY, int Narrow, int Width,int Height, int Rotation, int Readable,string Data)
+        {
+            EZioApi.sendcommand($"BH,{LeftPosX},{LeftPosY},{Narrow},{Width},{Height},{Rotation},{Readable},{Data}");
+        }
         public int Send(string Cmd)
         {
             return EZioApi.sendcommand(Cmd);

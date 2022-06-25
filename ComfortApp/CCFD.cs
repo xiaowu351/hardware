@@ -12,28 +12,43 @@ using System.Windows.Forms;
 
 namespace ComfortApp
 {
-    public partial class CCFD : Form
+    public partial class CCFD : ABathForm
     {
+        private ImageMode _imageMode;
         private int _dbIndex;
-        public CCFD(int dbIndex)
+        public CCFD(ImageMode imageMode)
         {
             InitializeComponent();
-            _dbIndex = dbIndex;
+            _dbIndex = (int)imageMode;
+            _imageMode = imageMode;
             RegisterEvent();
+            if (_imageMode == ImageMode.No)
+            {
+                txttupian.Visible = false;
+                pbImage.Visible = false;
+                lbltupian.Visible = false;
+            }
+
+           
+
         }
 
         private void RegisterEvent()
         {
             txtbihao.LostFocus += Txtbihao_LostFocus;
             txttiaoma.LostFocus += Txttiaoma_LostFocus;
+             
         }
+
+        
 
         private void Txttiaoma_LostFocus(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txttiaoma.Text.Trim())
-                || txttiaoma.Text.Trim().Length!=11)
+            if (!string.IsNullOrWhiteSpace(txttiaoma.Text.Trim())
+                && txttiaoma.Text.Trim().Length != 11)
             {
                 MessageBox.Show("不能為空或者條碼編號不是11位!");
+                txttiaoma.Focus();
                 return;
             }
         }
@@ -48,18 +63,23 @@ namespace ComfortApp
             var tupianIndex = bihao.LastIndexOf("-");
             if (tupianIndex < 0)
             {
-                MessageBox.Show("編號格式不正確!");
-                return;
+                //MessageBox.Show("編號格式不正確!");
+                //return;
+                tupianIndex = bihao.Length;
             }
-            txttupian.Text = bihao.Substring(0, tupianIndex).Trim();
-            using (var reader = AccessDbHelper.GetOleDbDataReader(_dbIndex, $"select * from tiaom  where bihao='{bihao}'"))
+            if(_imageMode == ImageMode.Yes)
+            {
+                txttupian.Text = bihao.Substring(0, tupianIndex).Trim();
+            }
+            
+            using (var reader = AccessDbHelper.GetOleDbDataReader(_dbIndex, $"select * from tiaom  where bihao ='{bihao}'"))
             {
                 if (reader.Read())
                 {
                     txttiaoma.Text = $"{ reader["tiaoma"]}".Trim();
                     txtshuoming.Text = $"{ reader["shuming"]}".Trim();
                     txtshuoming1.Text = $"{ reader["shuming1"]}".Trim();
-                    txtdingdan.Text = $"{ reader["nuber"]}".Trim();
+                    txtpo.Text = $"{ reader["nuber"]}".Trim();
                     txtjuli.Text = $"{ reader["juli"]}".Trim();
                     //txtdingdan.Text = $"{ reader["dingdan"]}";
                     //pbImage.ImageLocation = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, $"./images/{_tupian}.bmp");
@@ -69,7 +89,7 @@ namespace ComfortApp
                     txttiaoma.Text = string.Empty;
                     txtshuoming.Text = string.Empty;
                     txtshuoming1.Text = string.Empty;
-                    txtdingdan.Text = string.Empty;
+                    txtpo.Text = string.Empty;
                         txtjuli.Text = string.Empty;
                 }
             } 
@@ -77,8 +97,9 @@ namespace ComfortApp
 
         private void CCFD_Load(object sender, EventArgs e)
         {
-           var data =  AccessDbHelper.GetDataTable(_dbIndex, "select RTrim(nuber)  as 序號,RTrim(bihao) as  編號,RTrim(tiaoma)  as 條碼,RTrim(shuming) as 說明,RTrim(shuming1) as 說明1 ,RTrim(tupian)  as 圖片 from tiaom   order by bihao asc");
-            dgView.DataSource = data;
+            LoadData();
+            txtbihao.Focus();
+            LibHelper.FindTextBoxControl(splitContainer1.Panel1);
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -108,7 +129,7 @@ namespace ComfortApp
                     {
                         var updateSql = $"update tiaom set tiaoma='{txttiaoma.Text.Trim()}'," +
                             $"shuming='{txtshuoming.Text.Trim()}',shuming1='{txtshuoming1.Text.Trim()}'," +
-                            $"nuber='{txtdingdan.Text.Trim()}',juli='{txtjuli.Text.Trim()}',tupian='{txttupian.Text.Trim()}'" +
+                            $"nuber='{txtpo.Text.Trim()}',juli='{txtjuli.Text.Trim()}',tupian='{txttupian.Text.Trim()}'" +
                             $" where bihao='{txtbihao.Text.Trim()}'";
                         AccessDbHelper.ExecuteNonQuery(_dbIndex, updateSql);
                     }
@@ -117,7 +138,7 @@ namespace ComfortApp
                 {
                     //新增
                     var insertSql = "insert into tiaom(bihao,tiaoma,shuming,shuming1,nuber,juli,tupian) values(" +
-                        $"'{txtbihao.Text.Trim()}','{txttiaoma.Text.Trim()}','{txtshuoming.Text.Trim()}','{txtshuoming1.Text.Trim()}','{txtdingdan.Text.Trim()}','{txtjuli.Text.Trim()}','{txttupian.Text.Trim()}')";
+                        $"'{txtbihao.Text.Trim()}','{txttiaoma.Text.Trim()}','{txtshuoming.Text.Trim()}','{txtshuoming1.Text.Trim()}','{txtpo.Text.Trim()}','{txtjuli.Text.Trim()}','{txttupian.Text.Trim()}')";
                     AccessDbHelper.ExecuteNonQuery(_dbIndex, insertSql);
                 }
                 MessageBox.Show("保存成功!!");
@@ -126,9 +147,9 @@ namespace ComfortApp
             txttiaoma.Text = string.Empty;
             txtshuoming.Text = string.Empty;
             txtshuoming1.Text = string.Empty;
-            txtdingdan.Text = string.Empty;
+            txtpo.Text = string.Empty;
             txtjuli.Text = string.Empty;
-            CCFD_Load(null, null);
+            LoadData();
             txtbihao.Focus();
         }
 
@@ -150,7 +171,7 @@ namespace ComfortApp
             {
                 MessageBox.Show($"[{txtDeletebihao.Text.Trim()}]刪除失敗,記錄不存在!");
             }
-            CCFD_Load(null, null);
+            LoadData();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -180,6 +201,18 @@ namespace ComfortApp
             {
                 e.Handled = true;
             }
+        }
+
+        private void txtbihao_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.KeyChar = Convert.ToChar(e.KeyChar.ToString().ToUpper());
+        }
+
+        private void LoadData()
+        {
+            var data = AccessDbHelper.GetDataTable(_dbIndex, "select RTrim(nuber)  as 序號,RTrim(bihao) as  編號,RTrim(tiaoma)  as 條碼,RTrim(shuming) as 說明,RTrim(shuming1) as 說明1 ,RTrim(tupian)  as 圖片 from tiaom   order by bihao asc");
+            dgView.DataSource = data;
+
         }
     }
 }

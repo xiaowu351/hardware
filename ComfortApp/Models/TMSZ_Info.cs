@@ -24,5 +24,9 @@ namespace ComfortApp.Models
         /// 左边界
         /// </summary>
         public int le { get; set; }
+        /// <summary>
+        /// 标签间距
+        /// </summary>
+        public int gap { get; set; }
     }
 }

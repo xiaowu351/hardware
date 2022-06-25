@@ -39,12 +39,14 @@ namespace ComfortApp
             this.txtle = new System.Windows.Forms.TextBox();
             this.btnModify = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
+            this.lblgap = new System.Windows.Forms.Label();
+            this.cmbGap = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("微软雅黑", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Microsoft YaHei", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.label1.Location = new System.Drawing.Point(25, 10);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
@@ -55,17 +57,17 @@ namespace ComfortApp
             // 
             // txtdk
             // 
-            this.txtdk.Font = new System.Drawing.Font("微软雅黑", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtdk.Font = new System.Drawing.Font("Microsoft YaHei", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtdk.Location = new System.Drawing.Point(130, 10);
-            this.txtdk.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtdk.Margin = new System.Windows.Forms.Padding(2);
             this.txtdk.Name = "txtdk";
-            this.txtdk.Size = new System.Drawing.Size(150, 32);
+            this.txtdk.Size = new System.Drawing.Size(150, 33);
             this.txtdk.TabIndex = 1;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("微软雅黑", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Font = new System.Drawing.Font("Microsoft YaHei", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.label2.Location = new System.Drawing.Point(25, 55);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
@@ -76,17 +78,17 @@ namespace ComfortApp
             // 
             // txtwd
             // 
-            this.txtwd.Font = new System.Drawing.Font("微软雅黑", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtwd.Font = new System.Drawing.Font("Microsoft YaHei", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtwd.Location = new System.Drawing.Point(130, 55);
-            this.txtwd.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtwd.Margin = new System.Windows.Forms.Padding(2);
             this.txtwd.Name = "txtwd";
-            this.txtwd.Size = new System.Drawing.Size(150, 32);
-            this.txtwd.TabIndex = 1;
+            this.txtwd.Size = new System.Drawing.Size(150, 33);
+            this.txtwd.TabIndex = 2;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("微软雅黑", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Font = new System.Drawing.Font("Microsoft YaHei", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.label3.Location = new System.Drawing.Point(25, 107);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
@@ -97,17 +99,17 @@ namespace ComfortApp
             // 
             // txtsd
             // 
-            this.txtsd.Font = new System.Drawing.Font("微软雅黑", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtsd.Font = new System.Drawing.Font("Microsoft YaHei", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtsd.Location = new System.Drawing.Point(130, 107);
-            this.txtsd.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtsd.Margin = new System.Windows.Forms.Padding(2);
             this.txtsd.Name = "txtsd";
-            this.txtsd.Size = new System.Drawing.Size(150, 32);
-            this.txtsd.TabIndex = 1;
+            this.txtsd.Size = new System.Drawing.Size(150, 33);
+            this.txtsd.TabIndex = 3;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("微软雅黑", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Font = new System.Drawing.Font("Microsoft YaHei", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.label4.Location = new System.Drawing.Point(25, 159);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
@@ -118,53 +120,83 @@ namespace ComfortApp
             // 
             // txtle
             // 
-            this.txtle.Font = new System.Drawing.Font("微软雅黑", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtle.Font = new System.Drawing.Font("Microsoft YaHei", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtle.Location = new System.Drawing.Point(130, 159);
-            this.txtle.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtle.Margin = new System.Windows.Forms.Padding(2);
             this.txtle.Name = "txtle";
-            this.txtle.Size = new System.Drawing.Size(150, 32);
-            this.txtle.TabIndex = 1;
+            this.txtle.Size = new System.Drawing.Size(150, 33);
+            this.txtle.TabIndex = 4;
             // 
             // btnModify
             // 
-            this.btnModify.Font = new System.Drawing.Font("微软雅黑", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnModify.Location = new System.Drawing.Point(71, 210);
-            this.btnModify.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnModify.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnModify.Location = new System.Drawing.Point(62, 284);
+            this.btnModify.Margin = new System.Windows.Forms.Padding(2);
             this.btnModify.Name = "btnModify";
             this.btnModify.Size = new System.Drawing.Size(75, 40);
-            this.btnModify.TabIndex = 2;
+            this.btnModify.TabIndex = 6;
             this.btnModify.Text = "修改";
             this.btnModify.UseVisualStyleBackColor = true;
             this.btnModify.Click += new System.EventHandler(this.btnModify_Click);
             // 
             // btnCancel
             // 
-            this.btnCancel.Font = new System.Drawing.Font("微软雅黑", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancel.Location = new System.Drawing.Point(204, 210);
-            this.btnCancel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnCancel.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancel.Location = new System.Drawing.Point(189, 284);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(2);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 40);
-            this.btnCancel.TabIndex = 2;
+            this.btnCancel.TabIndex = 7;
             this.btnCancel.Text = "ESC取消";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
+            // lblgap
+            // 
+            this.lblgap.AutoSize = true;
+            this.lblgap.Font = new System.Drawing.Font("Microsoft YaHei", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblgap.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.lblgap.Location = new System.Drawing.Point(25, 221);
+            this.lblgap.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblgap.Name = "lblgap";
+            this.lblgap.Size = new System.Drawing.Size(93, 25);
+            this.lblgap.TabIndex = 0;
+            this.lblgap.Text = "标签间距:";
+            // 
+            // cmbGap
+            // 
+            this.cmbGap.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbGap.Font = new System.Drawing.Font("Microsoft YaHei", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbGap.FormattingEnabled = true;
+            this.cmbGap.Items.AddRange(new object[] {
+            "3",
+            "4",
+            "5"});
+            this.cmbGap.Location = new System.Drawing.Point(130, 221);
+            this.cmbGap.Name = "cmbGap";
+            this.cmbGap.Size = new System.Drawing.Size(150, 34);
+            this.cmbGap.TabIndex = 8;
             // 
             // TMSZ
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(325, 260);
+            this.CancelButton = this.btnCancel;
+            this.ClientSize = new System.Drawing.Size(350, 353);
+            this.Controls.Add(this.cmbGap);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnModify);
             this.Controls.Add(this.txtle);
             this.Controls.Add(this.txtsd);
             this.Controls.Add(this.txtwd);
+            this.Controls.Add(this.lblgap);
             this.Controls.Add(this.txtdk);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "TMSZ";
@@ -188,5 +220,7 @@ namespace ComfortApp
         private System.Windows.Forms.TextBox txtle;
         private System.Windows.Forms.Button btnModify;
         private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.Label lblgap;
+        private System.Windows.Forms.ComboBox cmbGap;
     }
 }

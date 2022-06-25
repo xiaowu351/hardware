@@ -33,7 +33,7 @@ namespace ComfortApp.Controls
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
             this.btnPrint = new System.Windows.Forms.Button();
             this.cblock = new System.Windows.Forms.CheckBox();
-            this.txtdingdan = new System.Windows.Forms.TextBox();
+            this.txtPO = new System.Windows.Forms.TextBox();
             this.txtNumber = new System.Windows.Forms.TextBox();
             this.txtshuoming1 = new System.Windows.Forms.TextBox();
             this.txtshuoming = new System.Windows.Forms.TextBox();
@@ -94,7 +94,7 @@ namespace ComfortApp.Controls
             this.btnPrint.Location = new System.Drawing.Point(48, 351);
             this.btnPrint.Name = "btnPrint";
             this.btnPrint.Size = new System.Drawing.Size(426, 66);
-            this.btnPrint.TabIndex = 3;
+            this.btnPrint.TabIndex = 8;
             this.btnPrint.Text = "打印";
             this.btnPrint.UseVisualStyleBackColor = true;
             this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
@@ -106,17 +106,17 @@ namespace ComfortApp.Controls
             this.cblock.Location = new System.Drawing.Point(373, 239);
             this.cblock.Name = "cblock";
             this.cblock.Size = new System.Drawing.Size(69, 30);
-            this.cblock.TabIndex = 2;
+            this.cblock.TabIndex = 6;
             this.cblock.Text = "鎖定";
             this.cblock.UseVisualStyleBackColor = true;
             // 
-            // txtdingdan
+            // txtPO
             // 
-            this.txtdingdan.Font = new System.Drawing.Font("Microsoft YaHei", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.txtdingdan.Location = new System.Drawing.Point(107, 239);
-            this.txtdingdan.Name = "txtdingdan";
-            this.txtdingdan.Size = new System.Drawing.Size(257, 32);
-            this.txtdingdan.TabIndex = 1;
+            this.txtPO.Font = new System.Drawing.Font("Microsoft YaHei", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.txtPO.Location = new System.Drawing.Point(107, 239);
+            this.txtPO.Name = "txtPO";
+            this.txtPO.Size = new System.Drawing.Size(257, 32);
+            this.txtPO.TabIndex = 5;
             // 
             // txtNumber
             // 
@@ -124,7 +124,7 @@ namespace ComfortApp.Controls
             this.txtNumber.Location = new System.Drawing.Point(107, 290);
             this.txtNumber.Name = "txtNumber";
             this.txtNumber.Size = new System.Drawing.Size(367, 32);
-            this.txtNumber.TabIndex = 1;
+            this.txtNumber.TabIndex = 7;
             // 
             // txtshuoming1
             // 
@@ -132,7 +132,7 @@ namespace ComfortApp.Controls
             this.txtshuoming1.Location = new System.Drawing.Point(107, 182);
             this.txtshuoming1.Name = "txtshuoming1";
             this.txtshuoming1.Size = new System.Drawing.Size(367, 32);
-            this.txtshuoming1.TabIndex = 1;
+            this.txtshuoming1.TabIndex = 4;
             // 
             // txtshuoming
             // 
@@ -140,7 +140,7 @@ namespace ComfortApp.Controls
             this.txtshuoming.Location = new System.Drawing.Point(107, 129);
             this.txtshuoming.Name = "txtshuoming";
             this.txtshuoming.Size = new System.Drawing.Size(367, 32);
-            this.txtshuoming.TabIndex = 1;
+            this.txtshuoming.TabIndex = 3;
             // 
             // splitContainer1
             // 
@@ -171,7 +171,7 @@ namespace ComfortApp.Controls
             this.label2.Location = new System.Drawing.Point(346, 14);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(128, 28);
-            this.label2.TabIndex = 1;
+            this.label2.TabIndex = 13;
             this.label2.Text = "基本資料建檔";
             this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
@@ -186,7 +186,7 @@ namespace ComfortApp.Controls
             this.label1.Name = "label1";
             this.label1.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.label1.Size = new System.Drawing.Size(90, 28);
-            this.label1.TabIndex = 1;
+            this.label1.TabIndex = 12;
             this.label1.Text = "系統設置";
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
@@ -200,7 +200,7 @@ namespace ComfortApp.Controls
             // 
             this.splitContainer2.Panel1.Controls.Add(this.btnPrint);
             this.splitContainer2.Panel1.Controls.Add(this.cblock);
-            this.splitContainer2.Panel1.Controls.Add(this.txtdingdan);
+            this.splitContainer2.Panel1.Controls.Add(this.txtPO);
             this.splitContainer2.Panel1.Controls.Add(this.txtNumber);
             this.splitContainer2.Panel1.Controls.Add(this.txtshuoming1);
             this.splitContainer2.Panel1.Controls.Add(this.txtshuoming);
@@ -237,7 +237,7 @@ namespace ComfortApp.Controls
             this.txttiaoma.Location = new System.Drawing.Point(107, 81);
             this.txttiaoma.Name = "txttiaoma";
             this.txttiaoma.Size = new System.Drawing.Size(367, 32);
-            this.txttiaoma.TabIndex = 1;
+            this.txttiaoma.TabIndex = 2;
             // 
             // label8
             // 
@@ -265,7 +265,7 @@ namespace ComfortApp.Controls
             this.txtbihao.Location = new System.Drawing.Point(203, 29);
             this.txtbihao.Name = "txtbihao";
             this.txtbihao.Size = new System.Drawing.Size(271, 32);
-            this.txtbihao.TabIndex = 1;
+            this.txtbihao.TabIndex = 0;
             // 
             // label5
             // 
@@ -280,11 +280,12 @@ namespace ComfortApp.Controls
             // txtnuber
             // 
             this.txtnuber.BackColor = System.Drawing.SystemColors.Info;
+            this.txtnuber.Enabled = false;
             this.txtnuber.Font = new System.Drawing.Font("Microsoft YaHei", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.txtnuber.Location = new System.Drawing.Point(107, 29);
             this.txtnuber.Name = "txtnuber";
             this.txtnuber.Size = new System.Drawing.Size(90, 32);
-            this.txtnuber.TabIndex = 1;
+            this.txtnuber.TabIndex = 12;
             // 
             // label4
             // 
@@ -338,7 +339,7 @@ namespace ComfortApp.Controls
         private System.Windows.Forms.SplitContainer splitContainer3;
         private System.Windows.Forms.Button btnPrint;
         private System.Windows.Forms.CheckBox cblock;
-        private System.Windows.Forms.TextBox txtdingdan;
+        private System.Windows.Forms.TextBox txtPO;
         private System.Windows.Forms.TextBox txtNumber;
         private System.Windows.Forms.TextBox txtshuoming1;
         private System.Windows.Forms.TextBox txtshuoming;

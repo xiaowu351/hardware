@@ -49,7 +49,7 @@ namespace ComfortApp
             this.tabControl1.Padding = new System.Drawing.Point(35, 20);
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(884, 612);
-            this.tabControl1.TabIndex = 0;
+            this.tabControl1.TabIndex = 100;
             this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
             // tabPage1
@@ -69,7 +69,7 @@ namespace ComfortApp
             this.printFormControl1.Location = new System.Drawing.Point(3, 3);
             this.printFormControl1.Name = "printFormControl1";
             this.printFormControl1.Size = new System.Drawing.Size(870, 546);
-            this.printFormControl1.TabIndex = 0;
+            this.printFormControl1.TabIndex = 200;
             // 
             // tabPage2
             // 
@@ -84,11 +84,13 @@ namespace ComfortApp
             // 
             // printFormControl2
             // 
+            this.printFormControl2.BackColor = System.Drawing.Color.PaleTurquoise;
             this.printFormControl2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.printFormControl2.ForeColor = System.Drawing.SystemColors.MenuHighlight;
             this.printFormControl2.Location = new System.Drawing.Point(3, 3);
             this.printFormControl2.Name = "printFormControl2";
             this.printFormControl2.Size = new System.Drawing.Size(870, 546);
-            this.printFormControl2.TabIndex = 0;
+            this.printFormControl2.TabIndex = 300;
             // 
             // AppMain
             // 
@@ -98,7 +100,7 @@ namespace ComfortApp
             this.Controls.Add(this.tabControl1);
             this.Font = new System.Drawing.Font("細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.Name = "AppMain";
-            this.Text = "AppMain";
+            this.Load += new System.EventHandler(this.AppMain_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
