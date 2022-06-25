@@ -166,6 +166,7 @@ namespace ComfortApp
             // 
             // cmbGap
             // 
+            this.cmbGap.BackColor = System.Drawing.SystemColors.ControlDark;
             this.cmbGap.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbGap.Font = new System.Drawing.Font("Microsoft YaHei", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbGap.FormattingEnabled = true;

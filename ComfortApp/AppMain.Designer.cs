@@ -99,6 +99,7 @@ namespace ComfortApp
             this.ClientSize = new System.Drawing.Size(884, 612);
             this.Controls.Add(this.tabControl1);
             this.Font = new System.Drawing.Font("細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "AppMain";
             this.Load += new System.EventHandler(this.AppMain_Load);
             this.tabControl1.ResumeLayout(false);
