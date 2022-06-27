@@ -111,7 +111,7 @@ namespace ComfortApp.Controls
             this.cblock.Location = new System.Drawing.Point(373, 239);
             this.cblock.Name = "cblock";
             this.cblock.Size = new System.Drawing.Size(69, 30);
-            this.cblock.TabIndex = 6;
+            this.cblock.TabIndex = 10;
             this.cblock.Text = "鎖定";
             this.cblock.UseVisualStyleBackColor = true;
             // 
@@ -135,7 +135,7 @@ namespace ComfortApp.Controls
             this.txtNumber.Location = new System.Drawing.Point(107, 290);
             this.txtNumber.Name = "txtNumber";
             this.txtNumber.Size = new System.Drawing.Size(367, 32);
-            this.txtNumber.TabIndex = 7;
+            this.txtNumber.TabIndex = 6;
             // 
             // txtshuoming1
             // 
