@@ -38,6 +38,7 @@ namespace ComfortApp.Controls
             this.txtshuoming1 = new System.Windows.Forms.TextBox();
             this.txtshuoming = new System.Windows.Forms.TextBox();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.lblLicense = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
@@ -170,6 +171,7 @@ namespace ComfortApp.Controls
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.lblLicense);
             this.splitContainer1.Panel1.Controls.Add(this.label2);
             this.splitContainer1.Panel1.Controls.Add(this.label1);
             // 
@@ -179,6 +181,17 @@ namespace ComfortApp.Controls
             this.splitContainer1.Size = new System.Drawing.Size(850, 580);
             this.splitContainer1.SplitterDistance = 81;
             this.splitContainer1.TabIndex = 3;
+            // 
+            // lblLicense
+            // 
+            this.lblLicense.AutoSize = true;
+            this.lblLicense.Font = new System.Drawing.Font("SimSun", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLicense.ForeColor = System.Drawing.Color.OrangeRed;
+            this.lblLicense.Location = new System.Drawing.Point(105, 58);
+            this.lblLicense.Name = "lblLicense";
+            this.lblLicense.Size = new System.Drawing.Size(230, 16);
+            this.lblLicense.TabIndex = 14;
+            this.lblLicense.Text = "當前為試用版，60天後到期！";
             // 
             // label2
             // 
@@ -403,5 +416,6 @@ namespace ComfortApp.Controls
         private System.Windows.Forms.TextBox txtnuber;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lblLicense;
     }
 }

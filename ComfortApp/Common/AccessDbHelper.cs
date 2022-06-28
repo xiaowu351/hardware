@@ -104,7 +104,7 @@ namespace ComfortApp.Common
         {
             try
             {
-                return GetDataSet(dbIndex,sqlStr).Tables[0];
+                return GetDataSet(dbIndex,sqlStr)?.Tables[0];
             }
             catch (OleDbException Ex)
             {

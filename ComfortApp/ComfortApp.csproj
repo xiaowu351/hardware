@@ -69,10 +69,15 @@
   <PropertyGroup>
     <ApplicationIcon>ABath.ico</ApplicationIcon>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -111,6 +116,12 @@
     <Compile Include="Controls\PrintFormControl.Designer.cs">
       <DependentUpon>PrintFormControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Licenses\EncodeHelper.cs" />
+    <Compile Include="Licenses\HardwareInfo.cs" />
+    <Compile Include="Licenses\LicenseManage.cs" />
+    <Compile Include="Licenses\LicenseModel.cs" />
+    <Compile Include="Licenses\RegistryHelper.cs" />
+    <Compile Include="Licenses\SerializeHelper.cs" />
     <Compile Include="Models\TMSZ_Info.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -145,6 +156,7 @@
     <EmbeddedResource Include="TMSZ.resx">
       <DependentUpon>TMSZ.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="app.manifest" />
     <None Include="images\A7000-PDF.pdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

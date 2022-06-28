@@ -14,6 +14,7 @@ namespace ComfortApp
 {
     public partial class CCFD : ABathForm
     {
+        BindingSource _dataSource;
         private ImageMode _imageMode;
         private int _dbIndex;
         public CCFD(ImageMode imageMode)
@@ -21,6 +22,7 @@ namespace ComfortApp
             InitializeComponent();
             _dbIndex = (int)imageMode;
             _imageMode = imageMode;
+            _dataSource = new BindingSource();
             RegisterEvent();
             if (_imageMode == ImageMode.No)
             {
@@ -37,10 +39,26 @@ namespace ComfortApp
         {
             txtbihao.LostFocus += Txtbihao_LostFocus;
             txttiaoma.LostFocus += Txttiaoma_LostFocus;
-             
+            txtbihao.TextChanged += Txtbihao_TextChanged;
+            txttiaoma.TextChanged += Txttiaoma_TextChanged;
         }
 
-        
+        private void Txttiaoma_TextChanged(object sender, EventArgs e)
+        {
+            if (sender is TextBox txtbox)
+            {
+                _dataSource.Filter = $" 條碼 like '%{txtbox.Text.Trim()}%'";
+            }
+        }
+
+        private void Txtbihao_TextChanged(object sender, EventArgs e)
+        {
+            if(sender is TextBox txtbox)
+            {
+                _dataSource.Filter = $" 編號 like '%{txtbox.Text.Trim()}%'";
+            }
+            
+        }
 
         private void Txttiaoma_LostFocus(object sender, EventArgs e)
         {
@@ -60,6 +78,7 @@ namespace ComfortApp
                 return;
             }
             var bihao = txtbihao.Text.Trim().ToUpper();
+            
             var tupianIndex = bihao.LastIndexOf("-");
             if (tupianIndex < 0)
             {
@@ -210,9 +229,17 @@ namespace ComfortApp
 
         private void LoadData()
         {
-            var data = AccessDbHelper.GetDataTable(_dbIndex, "select RTrim(nuber)  as 序號,RTrim(bihao) as  編號,RTrim(tiaoma)  as 條碼,RTrim(shuming) as 說明,RTrim(shuming1) as 說明1 ,RTrim(tupian)  as 圖片 from tiaom   order by bihao asc");
-            dgView.DataSource = data;
+            var sql = "select RTrim(nuber)  as 序號,RTrim(bihao) as  編號,RTrim(tiaoma)  as 條碼,RTrim(shuming) as 說明,RTrim(shuming1) as 說明1 ,RTrim(tupian)  as 圖片 from tiaom   order by bihao asc";
 
+            if (_imageMode == ImageMode.No)
+            {
+                sql = "select RTrim(nuber)  as 序號,RTrim(bihao) as  編號,RTrim(tiaoma)  as 條碼,RTrim(shuming) as 說明,RTrim(shuming1) as 說明1 ,RTrim(juli) as 距離 from tiaom   order by bihao asc";
+            }
+            var data = AccessDbHelper.GetDataTable(_dbIndex, sql);
+            //dgView.DataSource = data;
+
+            _dataSource.DataSource = data;
+            dgView.DataSource = _dataSource;
         }
     }
 }

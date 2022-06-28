@@ -18,6 +18,7 @@ namespace ComfortApp.Common
         public static TMSZ_Info ReadXTSZ(int dbIndex)
         {
             TMSZ_Info tmsz_info = null;
+            bool isAlter = false;
             using (var reader = AccessDbHelper.GetOleDbDataReader(dbIndex,"select * from tmsz"))
             {
                 if (reader.Read())
@@ -27,14 +28,32 @@ namespace ComfortApp.Common
                     tmsz_info.wd = Convert.ToInt32(reader.GetValue(reader.GetOrdinal(nameof(tmsz_info.wd))));
                     tmsz_info.sd = Convert.ToInt32(reader.GetValue(reader.GetOrdinal(nameof(tmsz_info.sd))));
                     tmsz_info.le = Convert.ToInt32(reader.GetValue(reader.GetOrdinal(nameof(tmsz_info.le))));
-                    var gap = reader.GetValue(reader.GetOrdinal(nameof(tmsz_info.gap)));
-                    if (!(gap is DBNull))
+                    if (!reader.GetSchemaTable().Columns.Contains(nameof(tmsz_info.gap)))
                     {
-                        tmsz_info.gap = Convert.ToInt32(gap);
+                        isAlter = true;                        
+                        tmsz_info.gap = 3;
+
                     }
-                    
+                    else
+                    {
+                        var gap = reader.GetValue(reader.GetOrdinal(nameof(tmsz_info.gap)));
+                        if (!(gap is DBNull))
+                        {
+                            tmsz_info.gap = Convert.ToInt32(gap);
+                        }
+                        else
+                        {
+                            tmsz_info.gap = 3;
+                        }
+                    }
+                                      
                 }
 
+
+            }
+            if (isAlter)
+            {
+                AccessDbHelper.ExecuteNonQuery(dbIndex, "alter table  tmsz add column gap integer");
 
             }
             return tmsz_info;

@@ -294,7 +294,7 @@ namespace ComfortApp
             this.dgView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dgView.RowTemplate.Height = 27;
             this.dgView.Size = new System.Drawing.Size(674, 273);
-            this.dgView.TabIndex = 0;
+            this.dgView.TabIndex = 100;
             this.dgView.RowStateChanged += new System.Windows.Forms.DataGridViewRowStateChangedEventHandler(this.dgView_RowStateChanged);
             // 
             // btnCancel

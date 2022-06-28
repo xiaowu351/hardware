@@ -36,6 +36,7 @@ namespace ComfortApp
             {
                 AccessDbHelper.ExecuteNonQuery(_dbIndex, "delete from tmsz");
             } 
+
             AccessDbHelper.ExecuteNonQuery(_dbIndex, sql);
             this.DialogResult = DialogResult.OK;
             this.Close();

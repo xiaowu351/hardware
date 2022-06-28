@@ -1,6 +1,7 @@
 ﻿using ComfortApp.Common;
 using ComfortApp.Models;
 using EzioDll;
+using License.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -19,9 +20,11 @@ namespace ComfortApp.Controls
     {
         private TMSZ_Info _tmsz_info;
         private GodexPrinter Printer;
-        
-         
+
+        private string _license_format = "當前為{0},{1}後到期！";
+       
         private string _tupian;
+        private bool _isExpire;
         public AppMain AppMain
         {
             get
@@ -33,6 +36,8 @@ namespace ComfortApp.Controls
         {
             InitializeComponent();
             RegisterEvent();
+            LicenseManage.Init(LicenseStorageMode.Regedit, "license.lic", "zhoupingwu;1wif.");            
+            _isExpire = false;
         }
 
         public void FirstFocus()
@@ -51,6 +56,7 @@ namespace ComfortApp.Controls
             txtbihao.LostFocus += Txtbihao_LostFocus;
             txtbihao.KeyPress += Txtbihao_KeyPress;
             
+            
         }
 
         private void Txtbihao_KeyPress(object sender, KeyPressEventArgs e)
@@ -65,6 +71,13 @@ namespace ComfortApp.Controls
                 clearInput();
                 return;
             }
+            register();
+            if (_isExpire)
+            {
+                clearInput();
+                return;
+            }
+
             var bihao = txtbihao.Text.Trim().ToUpper();
             var tupianIndex = bihao.LastIndexOf("-");
             if (tupianIndex < 0)
@@ -140,8 +153,7 @@ namespace ComfortApp.Controls
             Printer = new GodexPrinter();
             _tupian = string.Empty;
             LibHelper.FindTextBoxControl(splitContainer2.Panel1);
-             
-            
+            //register();
         }
         
 
@@ -245,7 +257,8 @@ namespace ComfortApp.Controls
             LabelSetup(number); 
             // Print Text
             Printer.Command.Start();
-            //Printer.Command.DrawStraightLinecommand(320, 15, 5, 50); // 画黑色长方形
+
+            //Printer.Command.DrawStraightLinecommand(8, 128, 252, 132); // 画黑色长方形
             if (AppMain.ImageMode == ImageMode.Yes)
             {
 
@@ -334,11 +347,13 @@ namespace ComfortApp.Controls
                 //x1 = 右下角水平位置(单位： dots)
                 //y1 = 右下角垂直位置(单位： dots)               
                 //Printer.Command.Send("le,320,245,5,280");
-                Printer.Command.DrawStraightLinecommand(320, 15, 5, 50); // 画黑色长方形
+                Printer.Command.DrawStraightLinecommand( 5, 50, 320, 15); // 画黑色长方形
+                //Printer.Command.DrawStraightLinecommand(320, 15, 5, 50); // 画黑色长方形
             }
             else
-            {                      
-                Printer.Command.DrawStraightLinecommand(350,15, 5, 50);
+            {
+                Printer.Command.DrawStraightLinecommand(5, 50,350, 15);
+                //Printer.Command.DrawStraightLinecommand(350,15, 5, 50);
             }
             //Bt,x,y,narrow,wide,height,rotation,readable,data - 条码命令
             Printer.Command.Barcodecommand(0, 60, 3, 5, 90, 0, 1, txttiaoma.Text.Trim());
@@ -361,6 +376,28 @@ namespace ComfortApp.Controls
 
             Printer.Command.PrintText(0, 220 , 30, "ARIAL black", "ALNO,INC.");
             Printer.Command.PrintText(205, 225 , 22, "ARIAL black", "Made In China");
+        }
+
+
+        void register()
+        {
+            if (LicenseManage.ApplicationLicense == null)
+            {
+                LicenseManage.GetLicense();
+            }
+            var licenseString = string.Format(_license_format,
+                    LicenseManage.RoleTypeToString(),
+                    Math.Ceiling((LicenseManage.ApplicationLicense.ExpireTime - DateTime.Now).TotalDays));
+            if (LicenseManage.VerifyLicense(LicenseManage.ApplicationLicense, true))
+            {
+                
+                lblLicense.Text = licenseString;
+            }
+            else
+            {
+                lblLicense.Text = $"{licenseString}，已過期！";
+                _isExpire = true;
+            }
         }
     }
 }
