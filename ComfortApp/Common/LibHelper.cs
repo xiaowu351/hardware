@@ -28,7 +28,7 @@ namespace ComfortApp.Common
                     tmsz_info.wd = Convert.ToInt32(reader.GetValue(reader.GetOrdinal(nameof(tmsz_info.wd))));
                     tmsz_info.sd = Convert.ToInt32(reader.GetValue(reader.GetOrdinal(nameof(tmsz_info.sd))));
                     tmsz_info.le = Convert.ToInt32(reader.GetValue(reader.GetOrdinal(nameof(tmsz_info.le))));
-                    if (!reader.GetSchemaTable().Columns.Contains(nameof(tmsz_info.gap)))
+                    if (reader.FieldCount<5)
                     {
                         isAlter = true;                        
                         tmsz_info.gap = 3;

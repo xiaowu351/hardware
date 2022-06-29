@@ -172,6 +172,12 @@ namespace ComfortApp.Controls
                 MessageBox.Show("未找到系統設置信息，請先設置系統信息再試!");
                 return;
             }
+            if (string.IsNullOrWhiteSpace(txtbihao.Text.Trim()))
+            {
+                MessageBox.Show("請先輸入編號，再點打印!");
+                txtbihao.Focus();
+                return;
+            }
             saveTosa();
             print();
             this.btnPrint.Enabled = false;
