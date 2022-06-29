@@ -104,7 +104,7 @@ namespace ComfortApp
             this.txttiaoma.Name = "txttiaoma";
             this.txttiaoma.Size = new System.Drawing.Size(156, 27);
             this.txttiaoma.TabIndex = 3;
-            this.txttiaoma.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txttiaoma_KeyPress);
+            //this.txttiaoma.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txttiaoma_KeyPress);
             // 
             // label3
             // 

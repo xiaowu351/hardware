@@ -7,6 +7,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -17,6 +18,7 @@ namespace ComfortApp
         BindingSource _dataSource;
         private ImageMode _imageMode;
         private int _dbIndex;
+        private Regex _numberRegex = new Regex("^[0-9]{11}$");
         public CCFD(ImageMode imageMode)
         {
             InitializeComponent();
@@ -45,9 +47,12 @@ namespace ComfortApp
 
         private void Txttiaoma_TextChanged(object sender, EventArgs e)
         {
+            
             if (sender is TextBox txtbox)
             {
+                
                 _dataSource.Filter = $" 條碼 like '%{txtbox.Text.Trim()}%'";
+                
             }
         }
 
@@ -62,13 +67,14 @@ namespace ComfortApp
 
         private void Txttiaoma_LostFocus(object sender, EventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(txttiaoma.Text.Trim())
-                && txttiaoma.Text.Trim().Length != 11)
-            {
-                MessageBox.Show("不能為空或者條碼編號不是11位!");
-                txttiaoma.Focus();
-                return;
-            }
+            //if (!string.IsNullOrWhiteSpace(txttiaoma.Text.Trim())
+            //    && txttiaoma.Text.Trim().Length != 11)
+            //{
+            //    //txttiaoma.Text = string.Empty;
+            //    txttiaoma.Focus();
+            //    MessageBox.Show("不能為空或者條碼編號不是11位!");                
+            //    return;
+            //}
         }
 
         private void Txtbihao_LostFocus(object sender, EventArgs e)
@@ -125,16 +131,26 @@ namespace ComfortApp
         {
             if (string.IsNullOrWhiteSpace(txtbihao.Text.Trim()))
             {
+                txtbihao.Focus();
                 MessageBox.Show("編號不能為空!");
+                return;
+            }
+             
+            if (!string.IsNullOrWhiteSpace(txttiaoma.Text.Trim()) && !_numberRegex.IsMatch(txttiaoma.Text.Trim()))
+            {
+                
+                MessageBox.Show("條碼必須是純數字且長度11位!");
+                txttiaoma.Focus();
+                //txttiaoma.Text = string.Empty;
                 return;
             }
             var existObj = AccessDbHelper.ExecuteScalar(_dbIndex, $"select count(*) from tiaom where  tiaoma='{txttiaoma.Text.Trim()}'");
             if (existObj is int && Convert.ToInt32(existObj) > 0)
             {
                 MessageBox.Show($"此條碼已存在!{txtbihao.Text.Trim()}");
-                txttiaoma.Text = string.Empty;
+                //txttiaoma.Text = string.Empty;
+                txttiaoma.Focus();
                 return;
-
             }
 
             if(string.IsNullOrWhiteSpace(txtbihao.Text.Trim()) ==false &&
@@ -213,14 +229,14 @@ namespace ComfortApp
             }
         }
 
-        private void txttiaoma_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            //如果输入的不是退格和十进制数字，则屏蔽输入
-            if (!(e.KeyChar == '\b' || char.IsDigit(e.KeyChar)))
-            {
-                e.Handled = true;
-            }
-        }
+        //private void txttiaoma_KeyPress(object sender, KeyPressEventArgs e)
+        //{
+        //    //如果输入的不是退格和十进制数字，则屏蔽输入
+        //    if (!(e.KeyChar == '\b' || char.IsDigit(e.KeyChar)))
+        //    {
+        //        e.Handled = true;
+        //    }
+        //}
 
         private void txtbihao_KeyPress(object sender, KeyPressEventArgs e)
         {

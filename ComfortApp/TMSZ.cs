@@ -1,12 +1,6 @@
 ﻿using ComfortApp.Common;
 using ComfortApp.Models;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 
 using System.Windows.Forms;
 
@@ -30,12 +24,12 @@ namespace ComfortApp
                    $"{txtdk.Text.Trim()}," +
                    $"{txtwd.Text.Trim()}," +
                    $"{txtsd.Text.Trim()}," +
-                   $"{txtle.Text.Trim()},"+
+                   $"{txtle.Text.Trim()}," +
                    $"{cmbGap.Text.Trim()})";
             if (_tmsz_Info != null)
             {
                 AccessDbHelper.ExecuteNonQuery(_dbIndex, "delete from tmsz");
-            } 
+            }
 
             AccessDbHelper.ExecuteNonQuery(_dbIndex, sql);
             this.DialogResult = DialogResult.OK;
@@ -53,7 +47,7 @@ namespace ComfortApp
             txtdk.Focus();
             LibHelper.FindTextBoxControl(this);
             _tmsz_Info = LibHelper.ReadXTSZ(_dbIndex);
-            if(_tmsz_Info != null)
+            if (_tmsz_Info != null)
             {
                 txtdk.Text = $"{_tmsz_Info.dk}";
                 txtwd.Text = $"{_tmsz_Info.wd}";
@@ -61,9 +55,9 @@ namespace ComfortApp
                 txtle.Text = $"{_tmsz_Info.le}";
                 cmbGap.SelectedItem = _tmsz_Info.gap.ToString();
             }
-          
+
         }
 
-        
+
     }
 }
