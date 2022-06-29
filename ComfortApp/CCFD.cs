@@ -167,6 +167,12 @@ namespace ComfortApp
                             $"nuber='{txtpo.Text.Trim()}',juli='{txtjuli.Text.Trim()}',tupian='{txttupian.Text.Trim()}'" +
                             $" where bihao='{txtbihao.Text.Trim()}'";
                         AccessDbHelper.ExecuteNonQuery(_dbIndex, updateSql);
+                        MessageBox.Show("修改成功!!");
+                    }
+                    else
+                    {
+                        txtbihao.Focus();
+                        return;
                     }
                 }
                 else
@@ -175,8 +181,9 @@ namespace ComfortApp
                     var insertSql = "insert into tiaom(bihao,tiaoma,shuming,shuming1,nuber,juli,tupian) values(" +
                         $"'{txtbihao.Text.Trim()}','{txttiaoma.Text.Trim()}','{txtshuoming.Text.Trim()}','{txtshuoming1.Text.Trim()}','{txtpo.Text.Trim()}','{txtjuli.Text.Trim()}','{txttupian.Text.Trim()}')";
                     AccessDbHelper.ExecuteNonQuery(_dbIndex, insertSql);
+                    MessageBox.Show("保存成功!!");
                 }
-                MessageBox.Show("保存成功!!");
+                
             }
             txtbihao.Text = string.Empty;
             txttiaoma.Text = string.Empty;
