@@ -1935,4 +1935,9 @@
     </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>IF NOT EXIST C:\Users\admin\Desktop\ABath  MD C:\Users\admin\Desktop\ABath
+XCOPY $(TargetDir)*.*  C:\Users\admin\Desktop\ABath /Y
+</PostBuildEvent>
+  </PropertyGroup>
 </Project>
