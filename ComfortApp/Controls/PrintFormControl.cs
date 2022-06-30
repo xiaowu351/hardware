@@ -21,7 +21,7 @@ namespace ComfortApp.Controls
         private TMSZ_Info _tmsz_info;
         private GodexPrinter Printer;
 
-        private string _license_format = "當前為{0},{1}後到期！";
+        private string _license_format = "當前為{0},{1}天後到期！";
        
         private string _tupian;
         private bool _isExpire;
