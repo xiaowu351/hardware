@@ -409,6 +409,7 @@ namespace ComfortApp.Controls
 
         void register()
         {
+            lblLicense.Visible = true;
             LicenseManage.GetLicense();
             var licenseString = string.Format(_license_format,
                     LicenseManage.RoleTypeToString(),

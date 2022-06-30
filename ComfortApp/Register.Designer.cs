@@ -193,8 +193,9 @@ namespace ComfortApp
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btn_createLic);
             this.Controls.Add(this.txtMachineCode);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Register";
-            this.Text = "License管理实验";
+            this.Text = "License Manager";
             this.Load += new System.EventHandler(this.Register_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

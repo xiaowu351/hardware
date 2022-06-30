@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace ComfortApp
 {
-    public partial class Register : Form
+    public partial class Register : ABathForm
     {
         public Register()
         {
