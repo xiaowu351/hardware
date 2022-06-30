@@ -121,6 +121,7 @@ namespace ComfortApp.Controls
                 {
                     MessageBox.Show("無此編號，請核對後重新輸入！");
                     clearInput();
+                    return;
                 }
             }
 
