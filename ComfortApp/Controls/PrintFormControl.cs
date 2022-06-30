@@ -36,7 +36,7 @@ namespace ComfortApp.Controls
         {
             InitializeComponent();
             RegisterEvent();
-            LicenseManage.Init(LicenseStorageMode.Regedit, "license.lic", "zhoupingwu;1wif.");            
+            LicenseManage.Init(LicenseStorageMode.Regedit, ConstString.LicenseSavePath, ConstString.LicenseEncodekey);
             _isExpire = false;
         }
 
@@ -55,8 +55,24 @@ namespace ComfortApp.Controls
             
             txtbihao.LostFocus += Txtbihao_LostFocus;
             txtbihao.KeyPress += Txtbihao_KeyPress;
+            txtshuoming1.LostFocus += Txtshuoming1_LostFocus;
             
-            
+        }
+
+        private void Txtshuoming1_LostFocus(object sender, EventArgs e)
+        {
+            if(sender is TextBox txt)
+            {
+                if(txt.Text.Trim() == "###")
+                {
+                    txt.Text = string.Empty;
+                    using (var reg = new Register())
+                    {
+                        reg.ShowDialog();
+                        register();
+                    }
+                }
+            }
         }
 
         private void Txtbihao_KeyPress(object sender, KeyPressEventArgs e)
@@ -153,7 +169,7 @@ namespace ComfortApp.Controls
             Printer = new GodexPrinter();
             _tupian = string.Empty;
             LibHelper.FindTextBoxControl(splitContainer2.Panel1);
-            //register();
+            register();
         }
         
 
@@ -166,6 +182,12 @@ namespace ComfortApp.Controls
 
         private void btnPrint_Click(object sender, EventArgs e)
         {
+            register();
+            if (_isExpire)
+            {
+                MessageBox.Show("license已過期無法使用打印功能!");
+                return;
+            }
             ReadXTSZ();
             if (_tmsz_info == null)
             {
@@ -387,22 +409,24 @@ namespace ComfortApp.Controls
 
         void register()
         {
-            if (LicenseManage.ApplicationLicense == null)
-            {
-                LicenseManage.GetLicense();
-            }
+            LicenseManage.GetLicense();
             var licenseString = string.Format(_license_format,
                     LicenseManage.RoleTypeToString(),
                     Math.Ceiling((LicenseManage.ApplicationLicense.ExpireTime - DateTime.Now).TotalDays));
             if (LicenseManage.VerifyLicense(LicenseManage.ApplicationLicense, true))
             {
-                
+                _isExpire = false;
                 lblLicense.Text = licenseString;
             }
             else
             {
                 lblLicense.Text = $"{licenseString}，已過期！";
                 _isExpire = true;
+            }
+
+            if(LicenseManage.ApplicationLicense.CustomRole == RoleType.Free)
+            {
+                lblLicense.Visible = false;
             }
         }
     }

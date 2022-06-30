@@ -107,6 +107,7 @@
       <DependentUpon>CCFD.cs</DependentUpon>
     </Compile>
     <Compile Include="Common\AccessDbHelper.cs" />
+    <Compile Include="Common\ConstString.cs" />
     <Compile Include="Common\EZioApi.cs" />
     <Compile Include="Common\GodexPrinter.cs" />
     <Compile Include="Common\LibHelper.cs" />
@@ -115,6 +116,12 @@
     </Compile>
     <Compile Include="Controls\PrintFormControl.Designer.cs">
       <DependentUpon>PrintFormControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Register.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Register.Designer.cs">
+      <DependentUpon>Register.cs</DependentUpon>
     </Compile>
     <Compile Include="Licenses\EncodeHelper.cs" />
     <Compile Include="Licenses\HardwareInfo.cs" />
