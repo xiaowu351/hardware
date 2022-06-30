@@ -51,6 +51,8 @@ namespace ComfortApp
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.txtDeletebihao = new System.Windows.Forms.TextBox();
+            this.lblRemark = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pbImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -104,7 +106,6 @@ namespace ComfortApp
             this.txttiaoma.Name = "txttiaoma";
             this.txttiaoma.Size = new System.Drawing.Size(156, 27);
             this.txttiaoma.TabIndex = 3;
-            //this.txttiaoma.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txttiaoma_KeyPress);
             // 
             // label3
             // 
@@ -271,6 +272,8 @@ namespace ComfortApp
             // 
             // splitContainer2.Panel2
             // 
+            this.splitContainer2.Panel2.Controls.Add(this.label4);
+            this.splitContainer2.Panel2.Controls.Add(this.lblRemark);
             this.splitContainer2.Panel2.Controls.Add(this.btnCancel);
             this.splitContainer2.Panel2.Controls.Add(this.btnDelete);
             this.splitContainer2.Panel2.Controls.Add(this.btnSave);
@@ -346,6 +349,28 @@ namespace ComfortApp
             this.txtDeletebihao.Size = new System.Drawing.Size(180, 32);
             this.txtDeletebihao.TabIndex = 11;
             // 
+            // lblRemark
+            // 
+            this.lblRemark.AutoSize = true;
+            this.lblRemark.Font = new System.Drawing.Font("Microsoft YaHei", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRemark.ForeColor = System.Drawing.Color.Red;
+            this.lblRemark.Location = new System.Drawing.Point(16, 51);
+            this.lblRemark.Name = "lblRemark";
+            this.lblRemark.Size = new System.Drawing.Size(316, 19);
+            this.lblRemark.TabIndex = 12;
+            this.lblRemark.Text = "注:①修改或新增條碼可直接在原有編號中修改或新增;";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft YaHei", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.Red;
+            this.label4.Location = new System.Drawing.Point(32, 74);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(385, 19);
+            this.label4.TabIndex = 12;
+            this.label4.Text = "②改寫編號、說明、說明1等其它欄位必須刪除該筆資料後再新增;";
+            // 
             // CCFD
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -401,5 +426,7 @@ namespace ComfortApp
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.TextBox txtDeletebihao;
+        private System.Windows.Forms.Label lblRemark;
+        private System.Windows.Forms.Label label4;
     }
 }

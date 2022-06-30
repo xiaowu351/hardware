@@ -161,7 +161,7 @@ namespace ComfortApp
                 if (exist_bihao is int && Convert.ToInt32(exist_bihao) > 0)
                 {
                     //修改
-                    if (MessageBox.Show("編號已存在,是否要修改!!!!", "提示", MessageBoxButtons.YesNo) == DialogResult.OK)
+                    if (MessageBox.Show("編號已存在,是否要修改!!!!", "提示", MessageBoxButtons.YesNo) == DialogResult.Yes)
                     {
                         var updateSql = $"update tiaom set tiaoma='{txttiaoma.Text.Trim()}'," +
                             $"shuming='{txtshuoming.Text.Trim()}',shuming1='{txtshuoming1.Text.Trim()}'," +

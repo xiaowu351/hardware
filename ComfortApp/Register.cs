@@ -21,6 +21,7 @@ namespace ComfortApp
 
 		private void btn_createLic_Click(object sender, EventArgs e)
 		{
+			txtLic.Text = string.Empty;
 			lbmsg.Text = "";
 			if (string.IsNullOrEmpty(txtMachineCode.Text) || string.IsNullOrEmpty(dtExpire.Text) || string.IsNullOrEmpty(cmb_role.Text))
 			{
@@ -104,7 +105,7 @@ namespace ComfortApp
 
         private void Register_Load(object sender, EventArgs e)
         {
-			btn_DelLic.Visible = false;
+			//btn_DelLic.Visible = false;
 			txtMachineCode.Text = LicenseManage.GetMachineCode();
 		}
 

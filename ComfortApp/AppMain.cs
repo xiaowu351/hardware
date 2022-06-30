@@ -53,6 +53,7 @@ namespace ComfortApp
 
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            
             FirstFocus();
         }
 
@@ -61,10 +62,12 @@ namespace ComfortApp
             if (tabControl1.SelectedIndex == 0)
             {
                 printFormControl1.FirstFocus();
+                printFormControl1.register();
             }
             else
             {
                 printFormControl2.FirstFocus();
+                printFormControl2.register();
             }
         }
     }

@@ -87,12 +87,12 @@ namespace ComfortApp.Controls
                 clearInput();
                 return;
             }
-            register();
-            if (_isExpire)
-            {
-                clearInput();
-                return;
-            }
+            //register();
+            //if (_isExpire)
+            //{
+            //    clearInput();
+            //    return;
+            //}
 
             var bihao = txtbihao.Text.Trim().ToUpper();
             var tupianIndex = bihao.LastIndexOf("-");
@@ -121,6 +121,8 @@ namespace ComfortApp.Controls
                 {
                     MessageBox.Show("無此編號，請核對後重新輸入！");
                     clearInput();
+                    txtbihao.Text = string.Empty;
+                    txtbihao.Focus();
                     return;
                 }
             }
@@ -188,7 +190,7 @@ namespace ComfortApp.Controls
             register();
             if (_isExpire)
             {
-                MessageBox.Show("license已過期無法使用打印功能!");
+                MessageBox.Show("license已過期無法使用打印功能，請支持版本！");
                 return;
             }
             ReadXTSZ();
@@ -414,7 +416,7 @@ namespace ComfortApp.Controls
         }
 
 
-        void register()
+        public void register()
         {
             lblLicense.Visible = true;
             LicenseManage.GetLicense();
@@ -434,6 +436,7 @@ namespace ComfortApp.Controls
 
             if(LicenseManage.ApplicationLicense.CustomRole == RoleType.Free)
             {
+                _isExpire = false;
                 lblLicense.Visible = false;
             }
         }
