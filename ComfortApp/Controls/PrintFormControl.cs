@@ -98,8 +98,9 @@ namespace ComfortApp.Controls
             var tupianIndex = bihao.LastIndexOf("-");
             if (tupianIndex < 0)
             {
-                MessageBox.Show("編號格式不正確!");
-                return;
+                //MessageBox.Show("編號格式不正確!");
+                tupianIndex = bihao.Length;
+                //return;
             }
             _tupian = bihao.Substring(0, tupianIndex).Trim();
             using (var reader = AccessDbHelper.GetOleDbDataReader(AppMain.TabSelectedIndex,$"select * from tiaom  where bihao='{bihao}'"))
@@ -337,7 +338,11 @@ namespace ComfortApp.Controls
                 Printer.Command.DrawStraightLinecommand(350, 245, 5, 280);
             }
             //Bt,x,y,narrow,wide,height,rotation,readable,data - 条码命令
-            Printer.Command.Barcodecommand(0, 297, 3, 5, 90, 0, 1, txttiaoma.Text.Trim());
+            if (!string.IsNullOrWhiteSpace(txttiaoma.Text.Trim()))
+            {
+                Printer.Command.Barcodecommand(0, 297, 3, 5, 90, 0, 1, txttiaoma.Text.Trim());
+            }
+            
             var shuoming1 = txtshuoming1.Text.Trim();
             if (string.IsNullOrWhiteSpace(shuoming1))
             {

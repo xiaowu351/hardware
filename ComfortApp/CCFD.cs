@@ -33,7 +33,7 @@ namespace ComfortApp
                 lbltupian.Visible = false;
             }
 
-           
+
 
         }
 
@@ -47,22 +47,22 @@ namespace ComfortApp
 
         private void Txttiaoma_TextChanged(object sender, EventArgs e)
         {
-            
+
             if (sender is TextBox txtbox)
             {
-                
+
                 _dataSource.Filter = $" 條碼 like '%{txtbox.Text.Trim()}%'";
-                
+
             }
         }
 
         private void Txtbihao_TextChanged(object sender, EventArgs e)
         {
-            if(sender is TextBox txtbox)
+            if (sender is TextBox txtbox)
             {
                 _dataSource.Filter = $" 編號 like '%{txtbox.Text.Trim()}%'";
             }
-            
+
         }
 
         private void Txttiaoma_LostFocus(object sender, EventArgs e)
@@ -84,7 +84,7 @@ namespace ComfortApp
                 return;
             }
             var bihao = txtbihao.Text.Trim().ToUpper();
-            
+
             var tupianIndex = bihao.LastIndexOf("-");
             if (tupianIndex < 0)
             {
@@ -92,11 +92,11 @@ namespace ComfortApp
                 //return;
                 tupianIndex = bihao.Length;
             }
-            if(_imageMode == ImageMode.Yes)
+            if (_imageMode == ImageMode.Yes)
             {
                 txttupian.Text = bihao.Substring(0, tupianIndex).Trim();
             }
-            
+
             using (var reader = AccessDbHelper.GetOleDbDataReader(_dbIndex, $"select * from tiaom  where bihao ='{bihao}'"))
             {
                 if (reader.Read())
@@ -115,9 +115,9 @@ namespace ComfortApp
                     txtshuoming.Text = string.Empty;
                     txtshuoming1.Text = string.Empty;
                     txtpo.Text = string.Empty;
-                        txtjuli.Text = string.Empty;
+                    txtjuli.Text = string.Empty;
                 }
-            } 
+            }
         }
 
         private void CCFD_Load(object sender, EventArgs e)
@@ -135,32 +135,33 @@ namespace ComfortApp
                 MessageBox.Show("編號不能為空!");
                 return;
             }
-             
-            if (!string.IsNullOrWhiteSpace(txttiaoma.Text.Trim()) && !_numberRegex.IsMatch(txttiaoma.Text.Trim()))
+
+            if (!string.IsNullOrWhiteSpace(txttiaoma.Text.Trim()))
             {
-                
-                MessageBox.Show("條碼必須是純數字且長度11位!");
-                txttiaoma.Focus();
-                //txttiaoma.Text = string.Empty;
-                return;
-            }
-            var existObj = AccessDbHelper.ExecuteScalar(_dbIndex, $"select count(*) from tiaom where  tiaoma='{txttiaoma.Text.Trim()}'");
-            if (existObj is int && Convert.ToInt32(existObj) > 0)
-            {
-                MessageBox.Show($"此條碼已存在!{txtbihao.Text.Trim()}");
-                //txttiaoma.Text = string.Empty;
-                txttiaoma.Focus();
-                return;
+                if (!_numberRegex.IsMatch(txttiaoma.Text.Trim()))
+                {
+                    MessageBox.Show("條碼必須是純數字且長度11位!");
+                    txttiaoma.Focus();
+                    return;
+                }
+                var existObj = AccessDbHelper.ExecuteScalar(_dbIndex, $"select count(*) from tiaom where  tiaoma='{txttiaoma.Text.Trim()}'");
+                if (existObj is int && Convert.ToInt32(existObj) > 0)
+                {
+                    MessageBox.Show($"此條碼已存在!{txtbihao.Text.Trim()}");
+                    //txttiaoma.Text = string.Empty;
+                    txttiaoma.Focus();
+                    return;
+                }
             }
 
-            if(string.IsNullOrWhiteSpace(txtbihao.Text.Trim()) ==false &&
-                string.IsNullOrWhiteSpace(txtshuoming.Text.Trim())==false)
+            if (string.IsNullOrWhiteSpace(txtbihao.Text.Trim()) == false &&
+                string.IsNullOrWhiteSpace(txtshuoming.Text.Trim()) == false)
             {
                 var exist_bihao = AccessDbHelper.ExecuteScalar(_dbIndex, $"select count(*) from tiaom where  bihao='{txtbihao.Text.Trim()}'");
                 if (exist_bihao is int && Convert.ToInt32(exist_bihao) > 0)
                 {
                     //修改
-                    if(MessageBox.Show("編號已存在,是否要修改!!!!","提示", MessageBoxButtons.YesNo) == DialogResult.OK)
+                    if (MessageBox.Show("編號已存在,是否要修改!!!!", "提示", MessageBoxButtons.YesNo) == DialogResult.OK)
                     {
                         var updateSql = $"update tiaom set tiaoma='{txttiaoma.Text.Trim()}'," +
                             $"shuming='{txtshuoming.Text.Trim()}',shuming1='{txtshuoming1.Text.Trim()}'," +
@@ -183,7 +184,7 @@ namespace ComfortApp
                     AccessDbHelper.ExecuteNonQuery(_dbIndex, insertSql);
                     MessageBox.Show("保存成功!!");
                 }
-                
+
             }
             txtbihao.Text = string.Empty;
             txttiaoma.Text = string.Empty;
@@ -191,6 +192,7 @@ namespace ComfortApp
             txtshuoming1.Text = string.Empty;
             txtpo.Text = string.Empty;
             txtjuli.Text = string.Empty;
+            txttupian.Text = string.Empty;
             LoadData();
             txtbihao.Focus();
         }
